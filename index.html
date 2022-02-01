@@ -1,0 +1,204 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Metody weryfikacji</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+					<section><h3>Metody weryfikacji użytkownika</h3>
+							<small>Maciej Obrycki - 9633</small>
+							<small>Kamil Kojro - 9712</small>
+					</section>
+					<section>
+						<section>
+						<h3>Knowledge-based</h3>
+						</section>
+						<section>
+							<p> 
+								Uwierzytelnianie oparte na wiedzy weryfikuje tożsamość osoby w oparciu o odpowiedź na pytanie bezpieczeństwa.
+								Pytania te są zaprojektowane w sposób który jest prosty dla osoby posiadającej konto, ale trudne dla każdego innego
+							</p>
+						</section>
+						<section>
+							<p>
+								Przykładowymi pytaniami są "Ile masz zwierząt?" lub "Kto był twoim ulubionym nauczycielem?"</br>
+								Wadami tego rozwiązania są:</br>
+								1. Łatwy dostęp do konta dla osoby trzeciej znającej blisko właściciela konta</br>
+								2. Teoretyczne zabezpieczenie wymagające właściwej wielkości znaków odpowiedzi</br>
+								3. Łatwość w "rozgryzieniu" odpowiedzi dzięki mediom społecznościowym</br>
+								4. Zawodna pamięć użytkownika</br>
+								Zaletą tego rozwiązania jest prosta implementacja
+							</p>
+						</section>
+						<section>
+							<p>
+								Jednym ze sposobów zabezpieczenia przy użyciu tej metody jest ograniczenie możliwych prób oraz wymaganie odpowiedzi w danym przedziale czasu
+							</p>
+						</section>
+						<section>
+							<p>
+								Tą metodę weryfikacji użytkownika do tej pory w pewnym zakresie stosują banki w próbach odzyskania dostępu do konta przez infolinię, gdzie ostateczną decyzję o potwiedzeniu statusu osoby na podstawie udzielonych informacji podejmuje <b>człowiek</b>.
+							</p>
+						</section>
+						<section>
+							<p>
+								W oparciu o podstawowe założenia tej metody osoba chcąca zyskać nieautoryzowany dostęp do konta jest wstanie przeprowadzić atak słownikowy jak zostało to pokazane w serialu "Mr. Robot"</br>
+								<a href="https://www.youtube.com/watch?v=iMUWuQnzc3I" target="_blank">Link do wspomnianego fragmentu serialu</a>
+							</p>
+						</section>
+						<section>
+							<p>
+								Wspomnianą wcześniej wadą tego sposobu autoryzacji była zawodna pamięć użytkownika.</br>
+								Właściciel konta może utracić dostęp do konta w wypadku gdy jego podpowiedź na pytanie</br>"Ile masz zwierząt?"</br> poda odpowiedź </br> "TsZy"</br>
+								w takiej sytacji użytkownik chcąc przechytrzyć włamywacza uniemożliwi sobie odzyskanie dostępu do konta.
+							</p>
+						</section>
+					</section>
+
+					<section>
+
+						<section>
+							<h3>Two-Factor Authentication</h3>
+						</section>
+						<section>
+						<p>
+							Uwierzytelnianie dwuskładnikowe wymaga od klienta wprowadzenia kodu przesłanego przez zewnętrzne medium takie jak poczta email lub wiadomość SMS</br>
+							Ta metoda weryfikacji jest powszechna, a sam proces weryfikacji powszechny oraz prosty do zrozumienia dla konsumenta
+						</p>
+						</section>
+						<section>
+							<p>
+								Uwierzytelnianie tego typu wymaga od użytkownika podania formy identyfikacji osobistej takiej takiej jak token oprócz zwykłej nazwy użytkownika</br>
+								Takim tokenem powinno być coś co użytkownik zapamiętał (czasem związane z metodą Knowledge-based) lub jest w jego posiadaniu (przykładowo kod uzyskany od agencji Uwierzytelniającej)</br>
+							</p>
+						</section>
+						<section>
+							<p>
+								Dwuskładnikowe uwierzytelnianie jest szczególnie przydatne przy tworzeniu kont i resetowaniu haseł.</br>
+								Konieczność posiadania tokenu stanowi silny czynnik zniechęcający do oszustw
+							</p>
+						</section>
+						<section>
+							<p>
+								Choć uwierzytelnianie dwuskładnikowe wydaje się być skutecznym sposobem autoryzacji dostępu do konta lub usługi jest obarczone ryzykiem kradzieży konta w przypadku gdy do autoryzacji wykorzystuje się tylko jedno urządzenie</br>
+								W wypadku gdy oszust ma dostęp do podglądu ekranu może w łatwy sposób zyskać nie autoryzowany dostęp do konta lub usługi</br>
+								<a href="https://www.youtube.com/watch?v=P3CGayReBK0" target="_blank"> przykład takiego zajścia </a>
+							</p>
+						</section>
+						<section>
+							<p>
+								Jednym z lepszych rozwiązań bezpieczeństwa użycia autoryzacji dwuskładnikowej jest aplikacja "Authenticator" firmy google
+							</p>
+						</section>
+					</section>
+
+					<section>
+
+						<section>
+							<h3>Database Methods</h3>
+						</section>
+						<section>
+							<p>
+								Metody weryfikacji oparte o bazy danych wykorzystują dane z różnych źródeł w celu weryfikacji czyjejś toższamości.</br>
+								Zazwyczaj stosowane są do oceny poziomu ryzyka jakie stwarza użytkownik, ponieważ znacznie ograniczają potrzebę ręcznej weryfikacji.</br>
+							</p>
+						</section>
+						<section>
+							<p>
+								Najistotniejszą wadą tych metod jest to, że nie dają one pewności że osoba posiadające informacje jest osobą przeprowadzającą transakcję, głownie ze względu na rozpowszechnienie fałszywych tożsamości w internecie
+							</p>
+						</section>
+						<section>
+							<p>
+								Częściowo tą metodę stosuje serwis Youtube w celu weryfikacji wieku użytkownika, jednak błędnym założeniem jest stwierdzenie że komunikuje się z serwerami rządowymi w celu określenia tożsamości</br>
+								W wypadku weryfikacji wieku przy użyciu karty kredytowej Youtube zakłada że osoba jest pełnoletnia na podstawie dyrektywy <a href ="https://digital-strategy.ec.europa.eu/en/policies/revision-avmsd" target="_blank"> avmsd</a>
+							</p>
+						</section>
+						<section>
+							<p>Schemat weryfikacji bazą danych firmy Oracle</p>
+							<img src="cncpt136.gif" alt="https://docs.oracle.com/cd/B19306_01/network.102/b14266/img/cncpt136.gif" style="height: 500px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+						</section>
+					</section>
+					<section>
+						<section>
+							<h3>Online verification</h3>	
+						</section>
+						<section>
+							<p>Weryfikacja online wykorzystuje techniki pozwalające określić, czy wydany identyfikator odnosi się do użytkownika</br>
+							(w tym sztuczną inteligencję, widzenie komputerowe i ocenę ludzką)</br>
+							Ta medota weryfikacji zazwyczaj wymaga od użytkowników przekazania zdjęcia siebie trzymającego identyfikator co daje pewnośc że osoba na identyfikatorze jest tą samą osoba która go posiada.
+							</p>
+						</section>
+						<section>
+							<p>
+								Weryfikacja online jest bezpieczna, jednak użytkownicy uważają że przesłanie zdjęcia swojej twarzy i dowodu tożsamości jest niewygodne i natrętne.
+							</p>
+						</section>
+
+					</section>
+					<section>
+						<section>
+							<h3>Biometric verification</h3>
+						</section>
+						<section>
+						<p>Biometria może być wykorzystywana do indentyfikacji i Uwierzytelniania osób na podstawie cech fizycznych.</br>
+							Biometria opiera się na założeniu że szereg cech fizycznych jest unikalny dla każdego użytkownika.
+						</p>
+						</section>
+						<section>
+						<p>Techniki biometryczne:</br>
+							Rozpoznawanie twarzy</br>
+							Rozpoznawanie głosu</br>
+							Skanowanie tęczówki</br>
+							Pobieranie odcisku palca</br>
+						</p>
+						</section>
+						<section>
+							<p>Wcześniej wymienione metody oferują wysoki poziom wygody dla klientów (zakładając wcześniejszą konfigurację), ponieważ wykluczają potrzebę pamiętania haseł, odpowiadania na pytania, itp.
+							</p>
+						</section>
+						<section>
+							<p>
+							Jednak biometria posiada szereg wad. Biometria może zostać skradziona. Zdjęcia z portali społecznościowych mogą zostać wykorzystane do weryfikacji, głos może zostać nagrany, bazy danych zhakowane w celu pobrania odcisków palca.</br>
+							Dodatkowo rozwijająca się sztuczna inteligencja (dostępna nawet na licencji opensource) może posłuzyć do stworzenia idealnej kopii biometrycznej człowieka
+							</p>
+						</section>
+						<section>
+							<p>
+								Przykłady użycia sztucznej inteligencji w odtwarzaniu biometrii:</br>
+								<a href="https://www.youtube.com/watch?v=QhBWRh-h71g" target="_blank">głosu</a></br>
+								<a href="https://www.youtube.com/watch?v=A8TmqvTVQFQ" target="_blank">twarzy</a></br>
+							</p>
+						</section>
+						<section>
+							<p>
+								W okolicach roku 2015 doszło do incydentu kradzieży 
+								<a href="https://www.theguardian.com/technology/2014/dec/30/hacker-fakes-german-ministers-fingerprints-using-photos-of-her-hands" target="_blank">odcisku palca ze zdjęcia Ursuli vor der Layer</a></br>
+							</p>
+						</section>
+					</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			Reveal.initialize({
+				hash: true,
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
